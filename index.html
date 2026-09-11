@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#1c1319">
+  <title>Galgame Web Engine Demo</title>
+  <link rel="stylesheet" href="css/game.css?v=oss">
+</head>
+<body>
+  <div id="app">
+    <div id="background"></div>
+    <div id="characterLayer" class="hidden"><img id="characterSprite" alt="character"></div>
+    <div id="sceneModeFX"></div>
+    <div id="rainLayer"></div>
+    <div id="vignette"></div>
+
+    <section id="titleScreen" class="screen active">
+      <div class="titleShade"></div>
+      <div class="titlePanel glass">
+        <div class="eyebrow">GALGAME WEB ENGINE</div>
+        <h1>Visual Novel Starter<br><small>Four Routes Demo</small></h1>
+        <div class="subtitle">Zero-build browser visual novel starter · JSON routes · sprites · save/load · gallery.</div>
+        <div class="menuGrid">
+          <button id="newGameBtn" class="menu primary">Start / 开始</button>
+          <button id="continueBtn" class="menu">Continue / 继续</button>
+          <button id="chapterBtn" class="menu">Chapters / 章节</button>
+          <button id="galleryBtn" class="menu">Gallery / CG</button>
+          <button id="endingsBtn" class="menu">Endings / 结局</button>
+          <button id="charactersBtn" class="menu">Characters / 人物</button>
+          <button id="achievementsBtn" class="menu">Achievements / 成就</button>
+          <button id="musicBtn" class="menu">Music / 音乐</button>
+          <button id="routeBtn" class="menu">Routes / 路线</button>
+          <button id="settingsBtnTitle" class="menu">Settings / 设定</button>
+        </div>
+        <div id="progressLine" class="version">v1.2.3-oss · OPEN SOURCE STARTER</div>
+      </div>
+    </section>
+
+    <section id="gameScreen" class="screen">
+      <div id="topbar">
+        <div id="chapterMini"></div>
+        <div class="topActions">
+          <button id="autoBtn" class="chip">AUTO</button>
+          <button id="skipBtn" class="chip">SKIP</button>
+          <button id="rollbackBtn" class="chip">↶</button>
+          <button id="historyBtn" class="chip">History / 记录</button>
+          <button id="relationshipBtn" class="chip">Routes / 关系</button>
+          <button id="saveBtn" class="chip">Save / 保存</button>
+          <button id="loadBtn" class="chip">Load / 读取</button>
+          <button id="settingsBtnGame" class="chip">Settings / 设定</button>
+          <button id="titleBtn" class="chip">Title / 标题</button>
+        </div>
+      </div>
+
+      <div id="stats" class="glass compact fourHeartsStats" title="Route variables">
+        <span>林夏 <b id="affectionValue">0</b></span>
+        <span>苏晴 <b id="suqingValue">0</b></span>
+        <span>艾米 <b id="amyValue">0</b></span>
+        <span>顾宁 <b id="guningValue">0</b></span>
+      </div>
+
+      <div id="npcCard" class="npcCard glass hidden">
+        <img id="npcPortrait" alt="">
+        <div><div id="npcName" class="npcName"></div><div id="npcRole" class="npcRole"></div></div>
+      </div>
+
+      <div id="phoneCard" class="glass hidden">
+        <div class="phoneHead">Message / 消息</div>
+        <div id="phoneFrom" class="phoneFrom"></div>
+        <div id="phoneText" class="phoneText"></div>
+      </div>
+
+      <div id="chapterCard" class="overlayCard hidden">
+        <div id="chapterNo" class="eyebrow"></div>
+        <div id="chapterName" class="chapterName"></div>
+      </div>
+
+      <div id="cinematic" class="hidden">
+        <div class="letterbox top"></div>
+        <div class="letterbox bottom"></div>
+        <div id="cinematicText"></div>
+      </div>
+
+      <div id="cgView" class="hidden">
+        <img id="cgImage" alt="CG">
+        <div id="cgCaption"></div>
+        <div class="cgHint">Click to continue / 点击继续</div>
+      </div>
+
+      <div id="endingCard" class="hidden">
+        <div class="endingInner glass">
+          <div class="eyebrow">ENDING</div>
+          <div id="endingTitle" class="endingTitle"></div>
+          <div id="endingSub" class="endingSub"></div>
+          <div id="endingReason" class="endingReason hidden"></div>
+          <div id="endingMeta" class="endingMeta"></div>
+          <div class="endingActions">
+            <button id="endingTitleBtn" class="menu primary">Back to title / 返回标题</button>
+            <button id="endingReplayBtn" class="menu">Retry last choice / 重试选择</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="dialogueWrap">
+        <div id="dialogueBox" class="glass">
+          <div id="speaker"></div>
+          <div id="dialogue"></div>
+          <div id="choices"></div>
+          <div id="hint"></div>
+        </div>
+      </div>
+    </section>
+
+    <div id="modal" class="hidden">
+      <div class="modalShade"></div>
+      <div class="modalPanel glass">
+        <div class="modalHead">
+          <div id="modalTitle"></div>
+          <button id="modalClose" class="iconBtn">×</button>
+        </div>
+        <div id="modalBody"></div>
+      </div>
+    </div>
+
+    <div id="flashLayer"></div>
+    <div id="toast"></div>
+  </div>
+  <script src="js/engine.js?v=oss"></script>
+</body>
+</html>
