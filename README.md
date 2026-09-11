@@ -30,11 +30,11 @@
 ## ✨ Showcase
 
 <p align="center">
-  <img src="docs/readme-linxia.svg" alt="Linxia heroine sprite" width="46%" />
+  <img src="docs/readme-showcase.jpg" alt="Linxia and Suqing heroine sprites" width="92%" />
 </p>
 
 <p align="center">
-  <sub>Full-size heroine art from the reference demo that this starter was extracted from.</sub>
+  <sub>Actual heroine art from the reference demo — Linxia and Suqing.</sub>
 </p>
 
 ---
