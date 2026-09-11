@@ -5,46 +5,67 @@
 <h1 align="center">Galgame Web Engine</h1>
 
 <p align="center">
-  <strong>A zero-build visual novel / Galgame starter for the browser.</strong><br>
-  Vanilla HTML + CSS + JavaScript. JSON story graph. Branching routes. Save/load. CG gallery. Audio hooks. Codex-friendly workflow.
+  <strong>Build browser-based visual novels with vanilla HTML, CSS, and JavaScript.</strong><br>
+  A zero-build open-source starter for branching stories, full-size heroine sprites, CGs, audio, save/load, and Codex-friendly development.
 </p>
 
 <p align="center">
-  <img alt="MIT" src="https://img.shields.io/badge/license-MIT-6f42c1">
+  <img alt="MIT" src="https://img.shields.io/badge/license-MIT-7c3aed">
   <img alt="Vanilla JS" src="https://img.shields.io/badge/JavaScript-vanilla-f7df1e?logo=javascript&logoColor=111">
-  <img alt="No build step" src="https://img.shields.io/badge/build-none-2ea44f">
-  <img alt="Static hosting" src="https://img.shields.io/badge/deploy-static%20hosting-0969da">
-  <img alt="Codex friendly" src="https://img.shields.io/badge/agent-Codex%20friendly-111827">
+  <img alt="Static Hosting" src="https://img.shields.io/badge/deploy-static%20hosting-2563eb">
+  <img alt="No Build Step" src="https://img.shields.io/badge/build-none-16a34a">
+  <img alt="Codex Friendly" src="https://img.shields.io/badge/Codex-friendly-111827">
 </p>
 
 <p align="center">
-  <a href="README.en.md">English</a> · <a href="README.zh-CN.md">简体中文</a> ·
-  <a href="docs/STORY_SCHEMA.md">Story schema</a> · <a href="docs/CODEX_WORKFLOW.md">Codex workflow</a>
+  <a href="README.en.md">English</a> ·
+  <a href="README.zh-CN.md">简体中文</a> ·
+  <a href="docs/STORY_SCHEMA.md">Story Schema</a> ·
+  <a href="docs/CODEX_WORKFLOW.md">Codex Workflow</a> ·
+  <a href="docs/ARCHITECTURE.md">Architecture</a>
+</p>
+
+---
+
+## ✨ Showcase
+
+<p align="center">
+  <img src="docs/readme-linxia.svg" alt="Linxia heroine sprite" width="46%" />
+</p>
+
+<p align="center">
+  <sub>Full-size heroine art from the reference demo that this starter was extracted from.</sub>
 </p>
 
 ---
 
 ## Why this exists
 
-Most visual-novel engines are powerful, but sometimes you want something you can understand by opening three files in a text editor.
+Most visual-novel engines are powerful, but sometimes you want something you can understand by opening a handful of files in a text editor.
 
-**Galgame Web Engine** is a dependency-light starter extracted from a real multi-route visual novel project. The runtime is intentionally plain: no npm, no bundler, no framework, no database. The game can be hosted anywhere that serves static files.
+**Galgame Web Engine** is a dependency-light starter extracted from a real multi-route browser Galgame. The runtime is intentionally plain:
 
-> Clone → edit JSON → replace art → run locally → publish.
+- no npm
+- no bundler
+- no framework
+- no database
+- no opaque build pipeline
 
-The repository ships with **lightweight inline SVG placeholder art** so the starter can remain fully open-source and easy to fork. Replace it with your own art/audio as your project grows.
+Just edit the story JSON, swap the art/audio, and ship to any static host.
 
-## Features
+> **Clone → edit JSON → replace assets → run locally → deploy anywhere.**
 
-| Runtime | Story / routes | Player UX | Project tooling |
+## What you get
+
+| Runtime | Story / routes | Player UX | Tooling |
 |---|---|---|---|
-| Vanilla HTML/CSS/JS | JSON-driven node graph | Multi-slot save/load | Story graph audit |
-| Static hosting | Choices + variable effects | Autosave | Reachability checks |
-| Full-size sprite layer | Conditional branches | Rollback | Missing-asset checks |
-| Portrait cards | Multiple heroines/routes | AUTO | Duplicate-art audit |
-| Background + CG layers | Chapters + endings | Read-only SKIP | GitHub Actions audit |
-| BGM/SFX hooks | Unlocks + achievements | History | `AGENTS.md` for Codex |
-| Phone/cinematic nodes | Relationship variables | Gallery / music room | Release checklist |
+| Vanilla HTML/CSS/JS | JSON-driven node graph | Multi-slot save/load | Story audit |
+| Static hosting | Choices + variables | Autosave | Reachability checks |
+| Background + CG layers | Branching routes | Rollback / History | Missing-asset checks |
+| Full-size heroine sprites | Multiple heroines | AUTO / read-only SKIP | Duplicate-art audit |
+| Portrait cards | Chapters + endings | Gallery / music room | Codex docs |
+| BGM/SFX hooks | Unlocks + achievements | Keyboard shortcuts | GitHub Actions audit |
+| Phone / cinematic nodes | Relationship states | Responsive UI | Release checklist |
 
 ## Quick start
 
@@ -66,7 +87,7 @@ Windows:
 start.bat 10000
 ```
 
-You can also use any static server, for example:
+Or use any static server:
 
 ```bash
 python3 -m http.server 10000
@@ -75,37 +96,37 @@ python3 -m http.server 10000
 ## Project map
 
 ```text
-index.html             UI shell
-css/game.css           presentation + responsive layout
-js/engine.js           visual-novel runtime
-story/story.json       story graph and game metadata
-assets/                asset replacement notes
-docs/                   architecture, schema, assets, Codex workflow
+index.html              UI shell
+css/game.css            presentation + responsive layout
+js/engine.js            browser runtime entry
+story/story.json        story graph and game metadata
+assets/                 replaceable game assets
 examples/               minimal story example
-build/audit_story.py    graph/reachability/asset-reference audit
-build/audit_assets.py   duplicate-art audit
-AGENTS.md               repository instructions for coding agents
+build/audit_story.py    graph and reference audit
+build/audit_assets.py   duplicate-image audit
+AGENTS.md               project instructions for coding agents
+docs/                   architecture, schema, assets, Codex workflow
 ```
 
-## Story in one glance
+## Story format
 
-A regular node is just JSON:
+A scene is plain JSON:
 
 ```json
 {
   "cafe_01": {
     "bg": "cafe_day",
-    "speaker": "林夏",
+    "speaker": "Linxia",
     "sprite": "neutral",
-    "text": "你今天看起来有点心不在焉。",
+    "text": "You look a little distracted today.",
     "choice": [
       {
-        "text": "告诉她真相",
+        "text": "Tell her the truth",
         "effects": {"affection": 1, "honesty": 1},
         "next": "cafe_honest"
       },
       {
-        "text": "转移话题",
+        "text": "Change the subject",
         "effects": {"secrecy": 1},
         "next": "cafe_deflect"
       }
@@ -114,7 +135,7 @@ A regular node is just JSON:
 }
 ```
 
-Supported node families include normal dialogue, `chapter`, `cinematic`, `phone`, `cg`, `branch`, and `ending` nodes. See **[Story Schema](docs/STORY_SCHEMA.md)** for the field-level contract.
+Supported node families include dialogue, `chapter`, `cinematic`, `phone`, `cg`, `branch`, and `ending`. See **[Story Schema](docs/STORY_SCHEMA.md)** for the full contract.
 
 ## Architecture
 
@@ -129,16 +150,16 @@ flowchart LR
     Audit --> Assets
 ```
 
-The project deliberately keeps the story graph, runtime, and assets separate. That makes it easy to replace the demo story without rewriting the engine.
+The story graph, runtime, and assets are deliberately separate. You can replace the demo story and presentation without rebuilding the engine.
 
-## Build your own game
+## Build your own Galgame
 
-1. Change title, chapters, characters, and start node in `story/story.json`.
-2. Add or replace backgrounds, sprites, portraits, CGs, BGM, and SFX.
-3. Register semantic asset keys near the top of `js/engine.js`.
-4. Write routes in small chapters with stable node IDs.
+1. Change game metadata, characters, chapters, and start node in `story/story.json`.
+2. Replace backgrounds, sprites, portraits, CGs, BGM, and SFX.
+3. Register semantic asset keys in `js/engine.js`.
+4. Write routes in small, testable chapters with stable node IDs.
 5. Run audits after structural or asset changes.
-6. Play through failure-prone branches before release.
+6. Play through fragile branches before release.
 
 Validation:
 
@@ -147,7 +168,7 @@ python3 build/audit_story.py
 python3 build/audit_assets.py
 ```
 
-`audit_assets.py` uses Pillow for raster-image similarity checks:
+`audit_assets.py` uses Pillow:
 
 ```bash
 python3 -m pip install pillow
@@ -155,7 +176,7 @@ python3 -m pip install pillow
 
 ## Develop with Codex
 
-This repository includes a short **[`AGENTS.md`](AGENTS.md)** plus deeper docs so Codex (or another coding agent) can work without guessing the project invariants.
+This repository includes **[`AGENTS.md`](AGENTS.md)** plus deeper docs so Codex can work without guessing project rules.
 
 A good first prompt:
 
@@ -177,16 +198,14 @@ Run both audits and smoke-test the changed route before finishing.
 
 More examples: **[Codex Workflow](docs/CODEX_WORKFLOW.md)**.
 
-## Extending the engine
-
-Good first contributions:
+## Good first contributions
 
 - animated sprite transitions
-- localization layer / string tables
+- localization / string tables
 - mobile-first dialogue UI
 - controller / keyboard navigation
 - accessibility improvements
-- import/export tooling for story graphs
+- story graph import/export tooling
 - richer condition expressions
 - automated route playthrough tests
 
@@ -194,17 +213,17 @@ Please read **[CONTRIBUTING.md](CONTRIBUTING.md)** before sending a PR.
 
 ## Design goals
 
-- **Readable:** no framework required to understand the runtime.
-- **Forkable:** swap the story and assets without rebuilding the engine.
-- **Auditable:** broken links and unreachable nodes should fail loudly.
-- **Agent-friendly:** rules and architecture live in-repo, not in someone's head.
-- **Static-hostable:** GitHub Pages, Cloudflare Pages, Netlify, nginx, or a local server all work.
+- **Readable** — no framework required to understand the runtime.
+- **Forkable** — replace the story and assets without rebuilding the engine.
+- **Auditable** — broken links and unreachable nodes should fail loudly.
+- **Agent-friendly** — project rules live in-repo, not in someone's head.
+- **Static-hostable** — GitHub Pages, Cloudflare Pages, Netlify, nginx, or a local server all work.
 
 ## License
 
-Code and repository documentation are released under the **MIT License**.
+Code and documentation are released under the **MIT License**.
 
-The starter's placeholder visuals are generated inline as SVG data. When you add third-party art, music, fonts, or sound effects, verify redistribution rights before publishing your fork. See [NOTICE.md](NOTICE.md).
+The showcase image above is from the reference demo. When you add third-party art, music, fonts, or sound effects, verify redistribution rights before publishing your fork. See [NOTICE.md](NOTICE.md).
 
 ---
 
