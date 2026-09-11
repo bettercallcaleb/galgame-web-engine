@@ -21,7 +21,7 @@ while q:
     a=q.popleft()
     for b in adj[a]:
         if b not in seen:seen.add(b);q.append(b)
-engine=(root/'js/engine.js').read_text()
+engine='\n'.join(p.read_text() for p in sorted((root/'js').glob('engine*.js')))
 assets_block=re.search(r'const ASSETS = \{(.*?)\n\};',engine,re.S).group(1)
 sprites_block=re.search(r'const SPRITES = \{(.*?)\n\};',engine,re.S).group(1)
 bgkeys=set(re.findall(r'([a-zA-Z0-9_]+)\s*:',assets_block))
