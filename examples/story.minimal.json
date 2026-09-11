@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "title": "Minimal Example",
+    "start": "start",
+    "version": "0.1.0",
+    "characters": [],
+    "chapters": [
+      {"label": "Chapter 1", "start": "start", "desc": "Minimal route"}
+    ],
+    "achievements": []
+  },
+  "nodes": {
+    "start": {
+      "type": "chapter",
+      "chapter": "Chapter 1",
+      "title": "A New Story",
+      "next": "hello"
+    },
+    "hello": {
+      "bg": "room",
+      "speaker": "Heroine",
+      "text": "This is a minimal dialogue node.",
+      "choice": [
+        {"text": "Continue", "effects": {"affection": 1}, "next": "cg_demo", "primary": true},
+        {"text": "Leave", "next": "end_demo"}
+      ]
+    },
+    "cg_demo": {
+      "type": "cg",
+      "asset": "sample_cg",
+      "caption": "Example CG",
+      "unlock": "minimal_example",
+      "next": "end_demo"
+    },
+    "end_demo": {
+      "type": "ending",
+      "title": "MINIMAL END",
+      "subtitle": "Replace this with your own ending.",
+      "unlock": "minimal_end"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "title": "Galgame Web Engine Demo",
+    "start": "prologue",
+    "version": "1.2.3-oss",
+    "characters": [
+      {"id":"linxia","name":"林夏","portrait":"","bio":"A warm colleague at the center of the demo route.","role":"Heroine 1"},
+      {"id":"suqing","name":"苏晴","portrait":"","bio":"Direct, perceptive, and difficult to bluff.","role":"Heroine 2"},
+      {"id":"amy","name":"艾米","portrait":"","bio":"A calm newcomer who asks uncomfortable questions.","role":"Heroine 3"},
+      {"id":"guning","name":"顾宁","portrait":"","bio":"A composed project lead with clear boundaries.","role":"Heroine 4"},
+      {"id":"chenmo","name":"陈默","portrait":"","bio":"Supporting character used to demonstrate portrait cards.","role":"Supporting character"}
+    ],
+    "chapters": [
+      {"label":"Prologue","start":"prologue","desc":"Meet the cast and make the first choice."},
+      {"label":"Crossroads","start":"crossroads","desc":"A compact conditional-branch demo."}
+    ],
+    "achievements": []
+  },
+  "nodes": {
+    "prologue": {"type":"chapter","chapter":"PROLOGUE","title":"After the Rain","next":"rain_01"},
+    "rain_01": {"bg":"rain_glass","speaker":"旁白","text":"The rain has almost stopped when four messages arrive within the same minute.","next":"phone_01"},
+    "phone_01": {"type":"phone","from":"林夏","text":"Still awake? I could use some company.","next":"rain_02"},
+    "rain_02": {"bg":"room","speaker":"你","text":"Four conversations. Four possible directions. This small demo exists to show how routes are built.","choice":[
+      {"text":"Reply to 林夏","effects":{"lx":2,"honesty":1},"next":"lx_01","primary":true},
+      {"text":"Call 苏晴","effects":{"sq":2,"tension":1},"next":"sq_01"},
+      {"text":"Meet 艾米 at the café","effects":{"amy":2,"courage":1},"next":"amy_01"},
+      {"text":"Accept 顾宁's late meeting","effects":{"gn":2,"career":1},"next":"gn_01"}
+    ]},
+    "lx_01": {"bg":"room","speaker":"林夏","text":"You came. I wasn't sure you would.","sprite":"neutral","spritePosition":"right","spriteShot":"medium","next":"lx_02"},
+    "lx_02": {"bg":"room","speaker":"你","text":"I wanted to.","effects":{"lx":1},"next":"crossroads"},
+    "sq_01": {"bg":"cafe_day","speaker":"苏晴","text":"You called me first? That's either brave or suspicious.","sprite":"suqing","spritePosition":"left","spriteShot":"medium","next":"sq_02"},
+    "sq_02": {"bg":"cafe_day","speaker":"你","text":"Maybe both.","effects":{"sq":1,"tension":1},"next":"crossroads"},
+    "amy_01": {"bg":"cafe_day","speaker":"艾米","text":"I like people who answer directly. It saves time.","sprite":"amy","spritePosition":"right","spriteShot":"medium","next":"amy_02"},
+    "amy_02": {"bg":"cafe_day","speaker":"你","text":"Then I should probably stop rehearsing my answer.","effects":{"amy":1,"honesty":1},"next":"crossroads"},
+    "gn_01": {"bg":"office_night","speaker":"顾宁","text":"This meeting is technically about work. Technically.","sprite":"guning","spritePosition":"right","spriteShot":"medium","next":"gn_02"},
+    "gn_02": {"bg":"office_night","speaker":"你","text":"And the unofficial agenda?","effects":{"gn":1,"career":1},"next":"crossroads"},
+    "crossroads": {"type":"chapter","chapter":"CHAPTER 1","title":"Crossroads","next":"cross_01"},
+    "cross_01": {"bg":"office_day","speaker":"陈默","text":"You know this is going to become complicated, right?","portrait":"chenmo","portraitSide":"left","next":"cross_02"},
+    "cross_02": {"bg":"office_day","speaker":"你","text":"That's what the route graph is for.","next":"route_branch"},
+    "route_branch": {"type":"branch","branches":[
+      {"when":"lx >= 3","next":"lx_cg"},
+      {"when":"sq >= 3","next":"sq_cg"},
+      {"when":"amy >= 3","next":"amy_cg"},
+      {"when":"gn >= 3","next":"gn_cg"}
+    ],"else":"neutral_end"},
+    "lx_cg": {"type":"cg","asset":"sample_cg","caption":"林夏 route sample CG","unlock":"cg_lx","next":"lx_end"},
+    "sq_cg": {"type":"cg","asset":"sample_cg","caption":"苏晴 route sample CG","unlock":"cg_sq","next":"sq_end"},
+    "amy_cg": {"type":"cg","asset":"sample_cg","caption":"艾米 route sample CG","unlock":"cg_amy","next":"amy_end"},
+    "gn_cg": {"type":"cg","asset":"sample_cg","caption":"顾宁 route sample CG","unlock":"cg_gn","next":"gn_end"},
+    "lx_end": {"type":"ending","title":"WARM RAIN","subtitle":"A small ending that demonstrates an unlockable heroine route.","unlock":"ending_lx"},
+    "sq_end": {"type":"ending","title":"NO MORE EXCUSES","subtitle":"A compact ending for the direct route.","unlock":"ending_sq"},
+    "amy_end": {"type":"ending","title":"NEW BEGINNING","subtitle":"A compact ending for the newcomer route.","unlock":"ending_amy"},
+    "gn_end": {"type":"ending","title":"AFTER HOURS","subtitle":"A compact ending for the project-lead route.","unlock":"ending_gn"},
+    "neutral_end": {"type":"ending","title":"STARTER END","subtitle":"Replace this demo graph with your own story.","unlock":"ending_demo"}
+  }
+}
