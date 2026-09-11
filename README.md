@@ -30,12 +30,11 @@
 ## ✨ Showcase
 
 <p align="center">
-  <img src="docs/readme-linxia.svg" alt="Linxia heroine sprite" width="44%" />
-  <img src="docs/readme-suqing.svg" alt="Suqing heroine sprite" width="44%" />
+  <img src="docs/readme-linxia.svg" alt="Linxia heroine sprite" width="46%" />
 </p>
 
 <p align="center">
-  <sub>Heroine art from the reference demo that this starter was extracted from.</sub>
+  <sub>Full-size heroine art from the reference demo that this starter was extracted from.</sub>
 </p>
 
 ---
@@ -224,7 +223,7 @@ Please read **[CONTRIBUTING.md](CONTRIBUTING.md)** before sending a PR.
 
 Code and documentation are released under the **MIT License**.
 
-The two images above are showcase assets from the reference demo. When you add third-party art, music, fonts, or sound effects, verify redistribution rights before publishing your fork. See [NOTICE.md](NOTICE.md).
+The showcase image above is from the reference demo. When you add third-party art, music, fonts, or sound effects, verify redistribution rights before publishing your fork. See [NOTICE.md](NOTICE.md).
 
 ---
 
