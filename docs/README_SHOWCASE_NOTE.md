@@ -1,0 +1,1 @@
+README showcase refreshed with real heroine art from the reference demo.
