@@ -1,5 +1,6 @@
 const engineParts = [
-  "js/engine-core.js",
+  "js/engine-art.js",
+  "js/engine-state2.js",
   "js/engine-story.js",
   "js/engine-ui.js",
   "js/engine-boot.js"
